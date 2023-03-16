@@ -8,6 +8,7 @@
 #include "DoorComponent.generated.h"
 
 class ATriggerBox;
+class IConsoleVariable;
 
 UENUM()
 enum class EDoorState
@@ -22,6 +23,7 @@ class WARSHIP_API UDoorComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+protected:
 	UPROPERTY(EditAnywhere)
 	FRotator DesireRotation;
 
@@ -42,13 +44,19 @@ class WARSHIP_API UDoorComponent : public UActorComponent
 	UPROPERTY(BlueprintReadOnly)
 	EDoorState DoorState;
 
-public:	
+
+public:
 	// Sets default values for this component's properties
 	UDoorComponent();
+	static  void OnDebugToggled(IConsoleVariable* Var);
+	void DebugDraw();
+
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+
 
 public:	
 	// Called every frame

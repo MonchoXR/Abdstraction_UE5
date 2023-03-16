@@ -9,6 +9,14 @@
 
 class ATriggerBox;
 
+UENUM()
+enum class EDoorState
+{
+	DS_Closed = 0  UMETA(DisplayName = "Closed"),
+	DS_Open = 1    UMETA(DisplayName = "Open"),
+	DS_Locked = 2  UMETA(DisplayName = "Locked"),
+
+};
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class WARSHIP_API UDoorComponent : public UActorComponent
 {
@@ -30,6 +38,9 @@ class WARSHIP_API UDoorComponent : public UActorComponent
 
 	UPROPERTY(EditAnywhere)
 	FRuntimeFloatCurve OpenCurve;
+
+	UPROPERTY(BlueprintReadOnly)
+	EDoorState DoorState;
 
 public:	
 	// Sets default values for this component's properties
